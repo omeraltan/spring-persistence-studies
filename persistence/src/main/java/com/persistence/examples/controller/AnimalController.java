@@ -45,9 +45,21 @@ public class AnimalController {
         return ResponseEntity.ok().body(animal);
     }
 
-    @GetMapping("/animal/{name}/{type}")
+    /*@GetMapping("/animal/{name}/{type}")
     public ResponseEntity<Animal> getAnimalByNameAndType(@PathVariable("name") String name, @PathVariable("type") String type){
         Animal animal = service.findAnimalByNameAndType(name, type);
+        return ResponseEntity.ok().body(animal);
+    }*/
+
+    /*@GetMapping("/animal/{name}/{type}")
+    public ResponseEntity<Animal> getAnimalByNameAndTypeNative(@PathVariable("name") String name, @PathVariable("type") String type){
+        Animal animal = service.findAnimalByNameAndTypeNative(name, type);
+        return ResponseEntity.ok().body(animal);
+    }*/
+
+    @GetMapping("/animal/{name}/{type}")
+    public ResponseEntity<Animal> getAnimalByNameAndTypeNamedParameters(@PathVariable("name") String name, @PathVariable("type") String type){
+        Animal animal = service.findAnimalByNameAndTypeNamedParameters(name, type);
         return ResponseEntity.ok().body(animal);
     }
 

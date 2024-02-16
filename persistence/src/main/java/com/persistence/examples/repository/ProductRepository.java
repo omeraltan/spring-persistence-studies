@@ -4,6 +4,7 @@ import com.persistence.examples.entity.Product;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -23,6 +24,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "SELECT u FROM Product u")
     List<Product> findAllSortProducts(Sort sort);
+
+    @Query(value = "SELECT u FROM Product u WHERE u.name IN : names")
+    List<Product> findProductByNameList(@Param("names") List<String> names);
+
+
 
 
 }

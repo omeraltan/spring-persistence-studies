@@ -1,8 +1,10 @@
 package com.persistence.examples;
 
 import com.persistence.examples.entity.Animal;
+import com.persistence.examples.entity.Car;
 import com.persistence.examples.entity.Product;
 import com.persistence.examples.repository.AnimalRepository;
+import com.persistence.examples.repository.CarRepository;
 import com.persistence.examples.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,6 +21,8 @@ public class PersistenceApplication implements CommandLineRunner{
     AnimalRepository repository;
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    CarRepository carRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(PersistenceApplication.class, args);
@@ -34,7 +38,6 @@ public class PersistenceApplication implements CommandLineRunner{
         Animal animal6 = new Animal(6L,"Lion", "Wild");
 
         List<Animal> list = Arrays.asList(animal1,animal2,animal3, animal4, animal5, animal6);
-
         repository.saveAll(list);
 
         Product product1 = new Product(1L,"Chair",1);
@@ -45,8 +48,20 @@ public class PersistenceApplication implements CommandLineRunner{
         Product product6 = new Product(6L,"Window",2);
 
         List<Product> productList = Arrays.asList(product1,product2,product3,product4,product5,product6);
-
         productRepository.saveAll(productList);
+
+        Car car1 = new Car(1L, "Mercedes", 1);
+        Car car2 = new Car(2L, "Toyota", 2);
+        Car car3 = new Car(3L, "BMW", 1);
+        Car car4 = new Car(4L, "Volkswagen", 1);
+        Car car5 = new Car(5L, "Ford", 3);
+        Car car6 = new Car(6L, "Honda", 2);
+        Car car7 = new Car(7L, "Chevrolet", 3);
+        Car car8 = new Car(8L, "Mazda", 2);
+
+        List<Car> carList = Arrays.asList(car1,car2,car3,car4,car5,car6,car7,car8);
+        carRepository.saveAll(carList);
+
 
     }
 }
