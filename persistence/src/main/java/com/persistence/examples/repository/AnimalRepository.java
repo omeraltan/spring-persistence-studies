@@ -23,4 +23,13 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
     @Query("SELECT u FROM Animal u WHERE u.name = ?1 and u.type = ?2")
     Animal findAnimalByNameAndType(String name, String type);
+
+    @Query(value = "SELECT * FROM Animal u WHERE u.name = ?1 AND u.type = ?2", nativeQuery = true)
+    Animal findAnimalByNameAndTypeNative(String name, String type);
+
+    @Query("SELECT u FROM Animal u WHERE u.name = :name AND u.type = :type")
+    Animal findAnimalByNameAndTypeNamedParameters(@Param("name") String name, @Param("type") String type);
+
+    @Query(value = "SELECT * FROM Animal u WHERE u.name = :name AND u.type = :type", nativeQuery = true)
+    Animal findAnimalByNameAndTypeNativeNamedParameters(@Param("name") String name, @Param("type") String type);
 }

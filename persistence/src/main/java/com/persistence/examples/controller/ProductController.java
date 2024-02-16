@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -51,6 +52,12 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllSortLengthProduct(){
         List<Product> product = productRepository.findAllSortProducts(JpaSort.unsafe("LENGTH(name)"));
         return ResponseEntity.ok().body(product);
+    }
+
+    @GetMapping("/productsinnames/{name}")
+    public ResponseEntity<List<Product>> getAllProductsInNames(@PathVariable("name") List<String> names){
+        List<Product> products = service.findAllProductsInNames(names);
+        return ResponseEntity.ok().body(products);
     }
 
 }

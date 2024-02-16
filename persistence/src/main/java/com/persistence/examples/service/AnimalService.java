@@ -18,4 +18,8 @@ public interface AnimalService {
     Animal findAnimalById(Long id);
 
     Animal findAnimalByNameAndType(String name, String type);
+
+    Animal findAnimalByNameAndTypeNative(String name, String type);
+
+    Animal findAnimalByNameAndTypeNamedParameters(String name, String type);
 }
