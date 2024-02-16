@@ -38,4 +38,14 @@ public class AnimalServiceImpl implements AnimalService{
     public Animal findAnimalByNameAndType(String name, String type) {
         return repository.findAnimalByNameAndType(name, type);
     }
+
+    @Override
+    public Animal findAnimalByNameAndTypeNative(String name, String type) {
+        return repository.findAnimalByNameAndTypeNative(name,type);
+    }
+
+    @Override
+    public Animal findAnimalByNameAndTypeNamedParameters(String name, String type) {
+        return repository.findAnimalByNameAndTypeNamedParameters(name,type);
+    }
 }

@@ -34,5 +34,10 @@ public class ProductServiceImpl implements ProductService{
         return repository.findAllSortProducts(sort);
     }
 
+    @Override
+    public List<Product> findAllProductsInNames(List<String> names) {
+        return repository.findProductByNameList(names);
+    }
+
 
 }

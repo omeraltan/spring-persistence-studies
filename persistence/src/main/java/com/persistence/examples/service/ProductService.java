@@ -15,4 +15,6 @@ public interface ProductService {
 
     List<Product> findAllSortProducts(Sort sort);
 
+    List<Product> findAllProductsInNames(List<String> names);
+
 }
