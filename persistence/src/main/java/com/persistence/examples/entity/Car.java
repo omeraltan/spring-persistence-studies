@@ -2,6 +2,8 @@ package com.persistence.examples.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 public class Car {
     @Id
@@ -13,13 +15,18 @@ public class Car {
 
     private Integer status;
 
+    private Boolean active;
+    private LocalDate productDate;
+
     public Car() {
     }
 
-    public Car(Long id, String name, Integer status) {
+    public Car(Long id, String name, Integer status, Boolean active, LocalDate productDate) {
         this.id = id;
         this.name = name;
         this.status = status;
+        this.active = active;
+        this.productDate = productDate;
     }
 
     public Long getId() {
@@ -44,5 +51,21 @@ public class Car {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public LocalDate getProductDate() {
+        return productDate;
+    }
+
+    public void setProductDate(LocalDate productDate) {
+        this.productDate = productDate;
     }
 }

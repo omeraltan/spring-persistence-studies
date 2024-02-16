@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,16 +51,17 @@ public class PersistenceApplication implements CommandLineRunner{
         List<Product> productList = Arrays.asList(product1,product2,product3,product4,product5,product6);
         productRepository.saveAll(productList);
 
-        Car car1 = new Car(1L, "Mercedes", 1);
-        Car car2 = new Car(2L, "Toyota", 2);
-        Car car3 = new Car(3L, "BMW", 1);
-        Car car4 = new Car(4L, "Volkswagen", 1);
-        Car car5 = new Car(5L, "Ford", 3);
-        Car car6 = new Car(6L, "Honda", 2);
-        Car car7 = new Car(7L, "Chevrolet", 3);
-        Car car8 = new Car(8L, "Mazda", 2);
+        Car car1 = new Car(1L, "Mercedes", 1, true, LocalDate.now());
+        Car car2 = new Car(2L, "Toyota", 2, true, LocalDate.of(2020,2,12));
+        Car car3 = new Car(3L, "BMW", 1, true, LocalDate.of(2008,1,4));
+        Car car4 = new Car(4L, "Volkswagen", 1, false, LocalDate.of(2018,4,24));
+        Car car5 = new Car(5L, "Ford", 3, true, LocalDate.of(1984,3,30));
+        Car car6 = new Car(6L, "Honda", 2, true, LocalDate.of(1999,7,17));
+        Car car7 = new Car(7L, "Chevrolet", 3, true, LocalDate.of(2003,9,11));
+        Car car8 = new Car(8L, "Mazda", 2, true, LocalDate.of(1856,2,12));
+        Car car9 = new Car(8L, null, 2, true, LocalDate.of(1855,4,7));
 
-        List<Car> carList = Arrays.asList(car1,car2,car3,car4,car5,car6,car7,car8);
+        List<Car> carList = Arrays.asList(car1,car2,car3,car4,car5,car6,car7,car8,car9);
         carRepository.saveAll(carList);
 
 

@@ -1,35 +1,107 @@
 package com.persistence.examples.service;
 
-
 import com.persistence.examples.entity.Car;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.criteria.*;
+import com.persistence.examples.repository.CarRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
+
 @Service
 public class CarServiceImpl implements CarService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Autowired
+    CarRepository repository;
 
     @Override
-    public List<Car> findCarByStatus(Set<Integer> status) {
+    public List<Car> findByName(String name) {
+        return repository.findByName(name);
+    }
 
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Car> query = cb.createQuery(Car.class);
-        Root<Car> car = query.from(Car.class);
-        Path<String> statusPath = car.get("status");
+    @Override
+    public List<Car> findByNameIs(String name) {
+        return repository.findByNameIs(name);
+    }
 
-        List<Predicate> predicates = new ArrayList<>();
-        for (Integer st : status){
-            predicates.add(cb.like(statusPath, String.valueOf(st)));
-        }
-        query.select(car).where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
+    @Override
+    public List<Car> findByNameEquals(String name) {
+        return repository.findByNameEquals(name);
+    }
 
-        return entityManager.createQuery(query).getResultList();
+    @Override
+    public List<Car> findByNameIsNot(String name) {
+        return repository.findByNameIsNot(name);
+    }
+
+    @Override
+    public List<Car> findByNameIsNull() {
+        return repository.findByNameIsNull();
+    }
+
+    @Override
+    public List<Car> findByNameIsNotNull() {
+        return repository.findByNameIsNotNull();
+    }
+
+    @Override
+    public List<Car> findByActiveTrue() {
+        return repository.findByActiveTrue();
+    }
+
+    @Override
+    public List<Car> findByActiveFalse() {
+        return repository.findByActiveFalse();
+    }
+
+    @Override
+    public List<Car> findByNameStartingWith(String prefix) {
+        return repository.findByNameStartingWith(prefix);
+    }
+
+    @Override
+    public List<Car> findByNameEndingWith(String suffix) {
+        return repository.findByNameEndingWith(suffix);
+    }
+
+    @Override
+    public List<Car> findByNameContaining(String infix) {
+        return repository.findByNameContaining(infix);
+    }
+
+    @Override
+    public List<Car> findByNameLike(String likePattern) {
+        return repository.findByNameLike(likePattern);
+    }
+
+    @Override
+    public List<Car> findByStatusLessThan(Integer status) {
+        return repository.findByStatusLessThan(status);
+    }
+
+    @Override
+    public List<Car> findByStatusLessThanEqual(Integer status) {
+        return repository.findByStatusLessThanEqual(status);
+    }
+
+    @Override
+    public List<Car> findByStatusBetween(Integer startStatus, Integer endStatus) {
+        return repository.findByStatusBetween(startStatus, endStatus);
+    }
+
+    @Override
+    public List<Car> findByStatusIn(Collection<Integer> statuses) {
+        return repository.findByStatusIn(statuses);
+    }
+
+    @Override
+    public List<Car> findByProductDateAfter(LocalDate date) {
+        return repository.findByProductDateAfter(date);
+    }
+
+    @Override
+    public List<Car> findByProductDateBefore(LocalDate date) {
+        return repository.findByProductDateBefore(date);
     }
 }
