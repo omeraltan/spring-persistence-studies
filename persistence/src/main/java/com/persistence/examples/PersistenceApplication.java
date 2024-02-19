@@ -1,11 +1,7 @@
 package com.persistence.examples;
 
-import com.persistence.examples.entity.Animal;
-import com.persistence.examples.entity.Car;
-import com.persistence.examples.entity.Product;
-import com.persistence.examples.repository.AnimalRepository;
-import com.persistence.examples.repository.CarRepository;
-import com.persistence.examples.repository.ProductRepository;
+import com.persistence.examples.entity.*;
+import com.persistence.examples.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,6 +20,10 @@ public class PersistenceApplication implements CommandLineRunner{
     ProductRepository productRepository;
     @Autowired
     CarRepository carRepository;
+    @Autowired
+    UtensilsRepository utensilsRepository;
+    @Autowired
+    UserRepository userRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(PersistenceApplication.class, args);
@@ -64,6 +64,28 @@ public class PersistenceApplication implements CommandLineRunner{
         List<Car> carList = Arrays.asList(car1,car2,car3,car4,car5,car6,car7,car8,car9);
         carRepository.saveAll(carList);
 
+        Utensils utensil1 = new Utensils(1L,"spoon", 3000.55);
+        Utensils utensil2 = new Utensils(2L,"fork", 2000.32);
+        Utensils utensil3 = new Utensils(3L,"knife", 1300.89);
+        Utensils utensil4 = new Utensils(4L,"plate", 3500.5);
+        Utensils utensil5 = new Utensils(5L,"glass", 500.00);
+        Utensils utensil6 = new Utensils(6L,"carafe", 4050.00);
+        Utensils utensil7 = new Utensils(7L,"salt", 750.00);
+        Utensils utensil8 = new Utensils(8L,"cup", 1250.00);
+
+        List<Utensils> utensilsList = Arrays.asList(utensil1,utensil2,utensil3,utensil4,utensil5,utensil6,utensil7,utensil8);
+        utensilsRepository.saveAll(utensilsList);
+
+        User user1 = new User(1L, "Ömer", "ALTAN","omer@gmail", 39);
+        User user2 = new User(2L, "Ebru", "ALTAN","ebru@gmail", 32);
+        User user3 = new User(3L, "Adil", "ALTAN","adil@gmail", 11);
+        User user4 = new User(4L, "Elif", "ALTAN","elif@gmail", 5);
+        User user5 = new User(5L, "Efe", "ALTAN","efe@gmail", 11);
+        User user6 = new User(6L, "Dilek", "ALTAN","dilek@gmail", 40);
+        User user7 = new User(7L, "Zeynep", "ALTAN","zeynep@gmail", 29);
+
+        List<User> userList = Arrays.asList(user1,user2,user3,user4,user5,user6,user7);
+        userRepository.saveAll(userList);
 
     }
 }
